@@ -7,6 +7,9 @@ class Node:
     def value(self):
         return self.__value
 
+    def __next__(self, x=None):
+        return x
+
 
 class LinkedList:
     def __init__(self, first: Node = None):
