@@ -9,8 +9,8 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self, first: Node = None):
-        self.__head: Node = first
+    def __init__(self, head: Node = None):
+        self.__head: Node = head
 
     @property
     def head(self):
@@ -21,10 +21,12 @@ class LinkedList:
             print('List is empty!')
             return
 
+        output = ''
         current = self.head
-        while current is not None:
-            print(current.value)
+        while current:
+            output += f" {current.value}"
             current = current.next_node
+        print(output)
 
     def push_back(self, x):
         new_node = Node(x)
@@ -34,7 +36,7 @@ class LinkedList:
             return
 
         current = self.head
-        while current.next_node is not None:
+        while current.next_node:
             current = current.next_node
 
         current.next_node = new_node
@@ -44,11 +46,14 @@ class LinkedList:
         new_node.next_node = self.__head
         self.__head = new_node
 
+    def insert(self, x: int):
+        pass
+
     def delete(self, x: int):
         pass
 
     def clear(self):
-        while self.head is not None:
+        while self.head:
             current = self.head
             self.__head = current.next_node
             del current
@@ -60,17 +65,15 @@ class LinkedList:
         previous = None
         current = self.head
         preceding = current.next_node
-
-        while self.head is not None:
+        while current.next_node:
             current.next_node = previous
             previous = current
             current = preceding
-            preceding = preceding.next_node
+            preceding = current.next_node
 
 
 if __name__ == '__main__':
     node = Node(1)
-    node.__next__(1)
     linked_list = LinkedList()
     linked_list.print_list()
     linked_list.push_back(1)
