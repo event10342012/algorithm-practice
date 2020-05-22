@@ -65,11 +65,14 @@ class LinkedList:
         previous = None
         current = self.head
         preceding = current.next_node
-        while current.next_node:
+        while preceding:
             current.next_node = previous
             previous = current
             current = preceding
-            preceding = current.next_node
+            preceding = preceding.next_node
+
+        current.next_node = previous
+        self.__head = current
 
 
 if __name__ == '__main__':
