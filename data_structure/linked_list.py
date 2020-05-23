@@ -50,7 +50,38 @@ class LinkedList:
         pass
 
     def delete(self, x: int):
-        pass
+        if self.head is None:
+            print('List is empty')
+            return
+
+        previous = None
+        current = self.head
+        if current.next_node is None:
+            if current.value == x:
+                del current
+                return
+            else:
+                print(f'{x} not in list')
+                return
+
+        if current.value == x:
+            self.__head = current.next_node
+            del current
+            return
+
+        while current.next_node:
+            if current.value == x:
+                previous.next_node = current.next_node
+                del current
+                return
+            previous = current
+            current = current.next_node
+
+        if current.value == x:
+            del current
+            previous.next_node = None
+            return
+        print(f'{x} not in list')
 
     def clear(self):
         while self.head:
@@ -69,7 +100,7 @@ class LinkedList:
             current.next_node = previous
             previous = current
             current = preceding
-            preceding = preceding.next_node
+            preceding = current.next_node
 
         current.next_node = previous
         self.__head = current
@@ -82,8 +113,18 @@ if __name__ == '__main__':
     linked_list.push_back(1)
     linked_list.push_back(2)
     linked_list.push_front(3)
+    linked_list.push_back(4)
+    linked_list.push_back(5)
     linked_list.print_list()
+
+    print('reverse')
     linked_list.reverse()
     linked_list.print_list()
+
+    print('delete')
+    linked_list.delete(3)
+    linked_list.print_list()
+
+    print('clear')
     linked_list.clear()
     linked_list.print_list()
